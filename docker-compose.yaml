@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13.5
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: sbertravel
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5433:5432"
+    expose:
+      - "5432"
+  redis:
+    image: library/redis:latest
+    ports:
+      - "6388:6379"
