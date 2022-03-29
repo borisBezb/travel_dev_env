@@ -16,3 +16,27 @@ services:
     image: library/redis:latest
     ports:
       - "6388:6379"
+  
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+    container_name: elastic
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+volumes:
+  elastic:
+
+networks:
+  default:
+    external:
+      name: goroomagent_default
