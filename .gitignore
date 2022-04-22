@@ -1,3 +1,5 @@
 db-data
+elastic
+rabbitmq
 .idea
 .DS_Store
